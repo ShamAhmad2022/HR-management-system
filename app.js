@@ -1,14 +1,17 @@
 'use strict';
 
-function AddEmployee(employeeId, fullName, department, level, imageURL){
-  this.employeeId = employeeId;
+function Employee(fullName, department, level, imageURL){
   this.fullName = fullName;
   this.department = department;
   this.level = level;
   this.imageURL = imageURL;
 }
 
-AddEmployee.prototype.claculateTheSalary = function(){
+Employee.prototype.generateId= () =>{
+  return Math.floor(Math.random()*(9999-1000+1))+1000;
+}
+
+Employee.prototype.claculateTheSalary = function(){
 
   let salary=0;
 
@@ -28,50 +31,78 @@ AddEmployee.prototype.claculateTheSalary = function(){
 
 }
 
-AddEmployee.prototype.render = function(){
-  const tr = document.createElement('tr');
+Employee.prototype.render = function(){
 
-  const td1 = document.createElement('td');
-  td1.textContent = this.employeeId;
-
-  const td2 = document.createElement('td');
-  td2.textContent = this.fullName;
+  const administrationArt = document.getElementById('administration-sec');
+  const marketingArt = document.getElementById('marketing-sec');
+  const developmentArt = document.getElementById('development-sec');
+  const financeArt = document.getElementById('finance-sec');
   
-  const td3 = document.createElement('td');
-  td3.textContent = this.department;
+  const card = document.createElement('div');
+  card.className="emplCard";
+
+  const EimgDiv = document.createElement('div');
   
-  const td4 = document.createElement('td');
-  td4.textContent = this.level;
+  const Eimg = document.createElement('img');
+  Eimg.src= this.imageURL;
+  Eimg.className= 'emp-img';
 
-  const td5 = document.createElement('td');
-  td5.textContent = this.claculateTheSalary();
+  EimgDiv.appendChild(Eimg);
+
+  card.appendChild(EimgDiv);
+
+  const EparDiv = document.createElement('div');
+
+  const firstP = document.createElement('p');
+  firstP.textContent = 'Name : ' + this.fullName + ' - ID: ' +this.generateId();
   
-  const td6 = document.createElement('td');
-  td6.textContent = this.imageURL;
+  const secondP = document.createElement('p');
+  secondP.textContent = 'Department : ' + this.department + ' - ' + this.level;
+  
+  const lastP = document.createElement('p');
+  lastP.textContent = this.claculateTheSalary();
 
-  tr.appendChild(td1);
-  tr.appendChild(td2);
-  tr.appendChild(td3);
-  tr.appendChild(td4);
-  tr.appendChild(td5);
-  tr.appendChild(td6);
+  EparDiv.appendChild(firstP);
+  EparDiv.appendChild(secondP);
+  EparDiv.appendChild(lastP);
 
-  const table = document.getElementsByTagName('table');
-  table[0].appendChild(tr);
+  card.appendChild(EparDiv);
+
+  switch(this.department){
+    case 'Administration':
+      administrationArt.appendChild(card);
+      break;
+    
+    case 'Marketing':
+        marketingArt.appendChild(card);
+      break;
+    
+    case 'Development':
+        developmentArt.appendChild(card);
+      break;
+    
+    case 'Finance':
+        financeArt.appendChild(card);
+      break;
+    
+  }
+  
+  // section.appendChild(card);
+  
 }
 
-const employee1 = new AddEmployee (1000, 'Ghazi Samer', 'Administration', 'Senior', 'ImgURL');
-const employee2 = new AddEmployee (1001, 'Lana Ali', 'Finance', 'Senior', 'ImgURL');
-const employee3 = new AddEmployee (1002, 'Tamara Ayoub', 'Marketing', 'Senior', 'ImgURL');
-const employee4 = new AddEmployee (1003, 'Safi Walid', 'Administration', 'Mid-Senior', 'ImgURL');
-const employee5 = new AddEmployee (1004, 'Omar Zaid', 'Development', 'Senior', 'ImgURL');
-const employee6 = new AddEmployee (1005, 'Rana Saleh', 'Development', 'Junior', 'ImgURL');
-const employee7 = new AddEmployee (1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior', 'ImgURL');
+const addEmployee = (e) =>{
+  e.preventDefault();
 
-console.log(employee1.render());
-console.log(employee2.render());
-console.log(employee3.render());
-console.log(employee4.render());
-console.log(employee5.render());
-console.log(employee6.render());
-console.log(employee7.render());
+  let fullName= e.target.fullname.value;
+  let department= e.target.department.value;
+  let level= e.target.Level.value;
+  let imageURL= e.target.imageURL.value;
+
+  const employee = new Employee (fullName, department, level, imageURL);
+  console.log(employee);
+  employee.render();
+}
+
+const employeesForm = document.getElementById('employee-Form');
+employeesForm.addEventListener('submit', addEmployee);
