@@ -10,25 +10,28 @@ html{
 
 body{
     font-size: 2.5rem;
-    font-family: arial, sans-serif;
+    font-family: arial, sans-serif; 
+    /* background: linear-gradient(360deg, rgba(255,255,255,1) 0%, rgba(255,157,157,1) 50%, rgba(128,128,128,1) 100%); */
 }
 
 .Indexheader{
+    background-color: #b63131;
     display: flex;
     align-items: center;
     justify-content: space-around;
     font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 7rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     font-size: 3rem;
 }
 
+
 .Indexheader a:link, .Indexheader a:visited{
-    color: 	#a30000;
+    color: 	#ffffff;
 }
 
 .Indexheader a:active, .Indexheader a:hover{
-    color: 	#494949;
+    color: 	#000000;
 }
 
 .headerNav ul{
@@ -46,42 +49,113 @@ body{
 }
 
 .headerNav a:active, .headerNav a:hover{
-    color: 	#a30000;
+    color: 	#ffffff;
     text-decoration: none;
 }
 
 main{
     padding: 0 10%;
     text-align: center;
+    padding-top: 7rem;
 }
+
+.add-Employeews{
+    
+}
+
+legend{
+    color: 	#a30000;
+    font-weight: 900;
+    margin-bottom: 2rem;
+}
+
+.employee-Form{
+    margin: auto;
+    width: 50%;
+    background-color: #2f2f2f7b;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    text-align: left;
+}
+
+.employee-Form input{
+    width: 75%;
+    height: 3rem;
+    font-size: 2.2rem;
+    background-color: white; 
+    border: none;   
+}
+
+.employee-Form input:focus{
+    color: #1f1f1f;
+    padding-left: 1.5rem;
+    background-color: white;
+    border: none;   
+}
+
+.employee-Form select{
+    width: 75%;
+    height: 3rem;
+    font-size: 2.2rem;
+    color: #1f1f1f;
+    background-color: white;
+    border: none;   
+}
+
+.employee-Form button{
+    padding: 1.5rem 0;
+    background-color: #b63131;
+    border: none;
+}
+
+.employee-Form button:hover{
+    background-color: #ca5555;
+    cursor: pointer;
+}
+
+.form-element{
+
+}
+
 
 .employeeInformation{
     margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    font-size: 1.8rem;
+}
+
+.emplCard{
+    background-color: #2f2f2f7b;
+    color: white;
+    width: 60%;
+    padding: 2rem;
+}
+
+.emp-img{
+    width: 200px;
+    border-Radius:50rem;
+    margin-bottom: 1rem;
+}
+
+.employeeInformation p{
+    margin-bottom: 1rem;
 }
 
 .listHeader{
-    margin-bottom: 4rem;
-}
-
-table {
-    border-collapse: collapse;
-    width: 80%;
-    margin: auto;
-    background-color: #cdcdcd;
-}
-  
-td, th {
-    border: 1px solid #dddddd;
-    padding: 8px;
-}
-
-.firstRow{
-    background-color: #613a3a;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 500;
 }
 
 .idexfooter{
+    background-color: #b63131;
     text-align: center;
-    transform: translateY(11rem);
+    margin-top: 3rem;
 }
 
 .footerFlex{
@@ -96,6 +170,14 @@ td, th {
 
 .SMFlex i{
     padding-left: 2rem;
+}
+
+.SMFlex a:link, .SMFlex a:visited{
+    color: white;
+}
+
+.SMFlex a:active, .SMFlex a:hover{
+    color: white;
 }
 
 .footerEmail{
