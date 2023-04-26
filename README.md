@@ -10,3 +10,8 @@
 * added an event listener.
 * refactored the render prototype function.
 * changed the style.
+
+## lab 08
+
+* saved all the data in the Local Storage.
+* built the accouting functionality.

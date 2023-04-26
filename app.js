@@ -1,14 +1,19 @@
 'use strict';
 
-function Employee(fullName, department, level, imageURL){
+function Employee(Id=0, fullName, department, level, imageURL, salary=0){
+  this.Id=Id;
   this.fullName = fullName;
   this.department = department;
   this.level = level;
   this.imageURL = imageURL;
+  this.salary=salary;
+  Employee.allEmployees.push(this);
 }
 
-Employee.prototype.generateId= () =>{
-  return Math.floor(Math.random()*(9999-1000+1))+1000;
+Employee.allEmployees = new Array();
+
+Employee.prototype.generateId= function(){
+  this.Id= Math.floor(Math.random()*(9999-1000+1))+1000;
 }
 
 Employee.prototype.claculateTheSalary = function(){
@@ -17,17 +22,18 @@ Employee.prototype.claculateTheSalary = function(){
 
   if(this.level.toLocaleLowerCase() === 'senior'){
     salary = Math.floor(Math.random()*(2000-1500+1))+1500;
-    return salary-Math.floor(salary*.075);
+    this.salary = salary-Math.floor(salary*.075);
+
   }
   
   else if(this.level.toLocaleLowerCase() === 'mid-senior'){
     salary = Math.floor(Math.random()*(1500-1000+1))+1000;
-    return salary-Math.floor(salary*.075);
+    this.salary = salary-Math.floor(salary*.075);
+ 
   }
   
   salary = Math.floor(Math.random()*(1000-500+1))+500;
-  return salary-Math.floor(salary*.075);
-
+  this.salary = salary-Math.floor(salary*.075);
 
 }
 
@@ -37,58 +43,66 @@ Employee.prototype.render = function(){
   const marketingArt = document.getElementById('marketing-sec');
   const developmentArt = document.getElementById('development-sec');
   const financeArt = document.getElementById('finance-sec');
-  
-  const card = document.createElement('div');
-  card.className="emplCard";
 
-  const EimgDiv = document.createElement('div');
-  
-  const Eimg = document.createElement('img');
-  Eimg.src= this.imageURL;
-  Eimg.className= 'emp-img';
+  administrationArt.innerHTML='';
+  marketingArt.innerHTML='';
+  developmentArt.innerHTML='';
+  financeArt.innerHTML='';
 
-  EimgDiv.appendChild(Eimg);
 
-  card.appendChild(EimgDiv);
-
-  const EparDiv = document.createElement('div');
-
-  const firstP = document.createElement('p');
-  firstP.textContent = 'Name : ' + this.fullName + ' - ID: ' +this.generateId();
-  
-  const secondP = document.createElement('p');
-  secondP.textContent = 'Department : ' + this.department + ' - ' + this.level;
-  
-  const lastP = document.createElement('p');
-  lastP.textContent = this.claculateTheSalary();
-
-  EparDiv.appendChild(firstP);
-  EparDiv.appendChild(secondP);
-  EparDiv.appendChild(lastP);
-
-  card.appendChild(EparDiv);
-
-  switch(this.department){
-    case 'Administration':
-      administrationArt.appendChild(card);
-      break;
+  for(let eachemployee of Employee.allEmployees){
     
-    case 'Marketing':
-        marketingArt.appendChild(card);
-      break;
+    const card = document.createElement('div');
+    card.className="emplCard";
+
+    const EimgDiv = document.createElement('div');
     
-    case 'Development':
-        developmentArt.appendChild(card);
-      break;
+    const Eimg = document.createElement('img');
+    Eimg.src= eachemployee.imageURL;
+    Eimg.className= 'emp-img';
+
+    EimgDiv.appendChild(Eimg);
+
+    card.appendChild(EimgDiv);
+
+    const EparDiv = document.createElement('div');
+
+    const firstP = document.createElement('p');
+    firstP.textContent = 'Name : ' + eachemployee.fullName + ' - ID: ' +eachemployee.Id;
     
-    case 'Finance':
-        financeArt.appendChild(card);
-      break;
+    const secondP = document.createElement('p');
+    secondP.textContent = 'Department : ' + eachemployee.department + ' - ' + eachemployee.level;
     
+    const lastP = document.createElement('p');
+    lastP.textContent = eachemployee.salary;
+
+    EparDiv.appendChild(firstP);
+    EparDiv.appendChild(secondP);
+    EparDiv.appendChild(lastP);
+
+    card.appendChild(EparDiv);
+
+    switch(eachemployee.department){
+      case 'Administration':
+        administrationArt.appendChild(card);
+        break;
+      
+      case 'Marketing':
+          marketingArt.appendChild(card);
+        break;
+      
+      case 'Development':
+          developmentArt.appendChild(card);
+        break;
+      
+      case 'Finance':
+          financeArt.appendChild(card);
+        break;
+      
+    }
+
   }
-  
-  // section.appendChild(card);
-  
+    
 }
 
 const addEmployee = (e) =>{
@@ -99,10 +113,36 @@ const addEmployee = (e) =>{
   let level= e.target.Level.value;
   let imageURL= e.target.imageURL.value;
 
-  const employee = new Employee (fullName, department, level, imageURL);
-  console.log(employee);
+  const employee = new Employee ();
+  employee.fullName=fullName;
+  employee.department=department;
+  employee.level=level;
+  employee.imageURL=imageURL;
+  employee.generateId();
+  employee.claculateTheSalary();
   employee.render();
+
+  console.log(employee);
+  saveToLocalStorage();
+}
+
+const saveToLocalStorage = () => {
+  let allEmployeesStringified = JSON.stringify(Employee.allEmployees);
+  localStorage.setItem('employee', allEmployeesStringified);
+}
+
+const getFromLocalStorage = () => {
+  let dataFromLocalStorage = localStorage.getItem('employee');
+  let allEmployeesParsed = JSON.parse(dataFromLocalStorage);
+  if(allEmployeesParsed !== null){
+    for (let eachemployee of allEmployeesParsed){
+      new Employee(eachemployee.Id, eachemployee.fullName, eachemployee.department, eachemployee.level, eachemployee.imageURL, eachemployee.salary);
+    } 
+    Employee.allEmployees[0].render();
+  }
+ 
 }
 
 const employeesForm = document.getElementById('employee-Form');
 employeesForm.addEventListener('submit', addEmployee);
+getFromLocalStorage(); // it need to be executed once

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +10,8 @@
 
     <title>HR-management-system</title>
 </head>
-
 <body>
-    <header class="Indexheader">
+     <header class="Indexheader">
         <a href="#">HR.M.S</a>
         <nav class="headerNav">
             <ul>
@@ -29,57 +27,59 @@
         <section class="add-Employeews">
             <fieldset>
                 <legend>Add employee : </legend>
-                <form id="employee-Form" class="employee-Form">
-                    <div class="form-element">
-                        <label for="fullname">Fullname: </label>
-                        <input type="text" name="fullname" id="fullname" />
-                    </div>
-
-                    <div class="form-element">
-                        <label for="department">Department: </label>
-                        <select name="department" id="department">
-                            <option value="Administration">Administration</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Development">Development</option>
-                            <option value="Finance">Finance</option>
-                        </select>
-                    </div>
-
-                    <div class="form-element">
-                        <label for="Level">Level: </label>
-                        <select name="Level" id="Level">
-                            <option value="Junior">Junior</option>
-                            <option value="Mid-Senior">Mid-Senior</option>
-                            <option value="Senior">Senior</option>
-                        </select>
-                    </div>
-
-                    <div class="form-element">
-                        <label for="image-URL">Image-URL: </label>
-                        <input type="text" name="imageURL" id="imageURL" />
-                    </div>
-
-                    <button type="submit">Add</button>
-                </form>
+                    <form id="employee-Form" class="employee-Form">
+                        <div class="form-element">
+                            <label for="fullname">Fullname: </label>
+                            <input type="text" name="fullname" id="fullname"/>
+                        </div>
+                        
+                        <div class="form-element">
+                            <label for="department">Department: </label>
+                            <select name="department" id="department">
+                                <option value="Administration">Administration</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Development">Development</option>
+                                <option value="Finance">Finance</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-element">
+                            <label for="Level">Level: </label>
+                            <select name="Level" id="Level">
+                                <option value="Junior">Junior</option>
+                                <option value="Mid-Senior">Mid-Senior</option>
+                                <option value="Senior">Senior</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-element">
+                            <label for="image-URL">Image-URL: </label>
+                            <input type="text" name="imageURL" id="imageURL"/>
+                        </div>
+                        
+                        <button type="submit">Add</button>
+                    </form>
             </fieldset>
         </section>
 
-        <section id="employeeInformation" class="employeeInformation">
-            <article id="administration-sec" class="employeeInformation">
-                <h2 class="listHeader">Employees work in the administration Department :</h2>
-            </article>
+        <section id="employeeInformation" class="employeeInformation"> 
+           
+            <hr id="Strike">
+            <h2 class="listHeader">Employees work in the administration Department :</h2>
+            <article id="administration-sec" class="employeeInformation"></article>
 
-            <article id="marketing-sec" class="employeeInformation">
-                <h2 class="listHeader">Employees work in the marketing Department :</h2>
-            </article>
+            <hr id="Strike">
+            <h2 class="listHeader">Employees work in the marketing Department :</h2>
+            <article id="marketing-sec" class="employeeInformation"></article>
 
-            <article id="development-sec" class="employeeInformation">
-                <h2 class="listHeader">Employees work in the development Department :</h2>
-            </article>
+            <hr id="Strike">
+            <h2 class="listHeader">Employees work in the development Department :</h2>
+            <article id="development-sec" class="employeeInformation"></article>
 
-            <article id="finance-sec" class="employeeInformation">
-                <h2 class="listHeader">Employees work in the finance Department :</h2>
-            </article>
+            <hr id="Strike">
+            <h2 class="listHeader">Employees work in the finance Department :</h2>
+            <article id="finance-sec" class="employeeInformation"></article>
+            
         </section>
     </main>
 
@@ -103,5 +103,4 @@
 
     <script src="app.js"></script>
 </body>
-
 </html>
