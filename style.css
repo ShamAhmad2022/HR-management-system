@@ -78,10 +78,11 @@ legend{
     flex-direction: column;
     gap: 5rem;
     text-align: left;
+    margin-bottom: 2rem;
 }
 
 .employee-Form input{
-    width: 75%;
+    width: 72%;
     height: 3rem;
     font-size: 2.2rem;
     background-color: white; 
@@ -96,7 +97,7 @@ legend{
 }
 
 .employee-Form select{
-    width: 75%;
+    width: 72%;
     height: 3rem;
     font-size: 2.2rem;
     color: #1f1f1f;
@@ -121,7 +122,7 @@ legend{
 
 
 .employeeInformation{
-    margin-top: 10rem;
+    /* margin-top: 10rem; */
     display: flex;
     flex-direction: column;
     gap: 3rem;
@@ -132,12 +133,14 @@ legend{
 .emplCard{
     background-color: #2f2f2f7b;
     color: white;
-    width: 60%;
+    width: 100%;
     padding: 2rem;
 }
 
 .emp-img{
     width: 200px;
+    height: 200px;
+    object-fit: cover;
     border-Radius:50rem;
     margin-bottom: 1rem;
 }
@@ -147,9 +150,53 @@ legend{
 }
 
 .listHeader{
-    margin-bottom: 1rem;
     font-size: 2.5rem;
     font-weight: 500;
+}
+
+.listHeader:first-child{
+    margin-top: 10rem;
+}
+
+#Strike{
+    width: 90rem;
+    height: .1rem;
+    background-color: #000000;
+    margin-bottom: 1rem;
+    margin-top: 6rem;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+    background-color: #cdcdcd;
+}
+  
+td, th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+.firstRow{
+    background-color: #c07979;
+}
+
+.departmentsInfoHeader{
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.depTable{
+    margin-bottom: 8rem;
+}
+
+.depTable:last-child{
+    margin-bottom: 25rem;
+}
+
+.alldepartmentsInfo{
+    margin-bottom: 10rem;
 }
 
 .idexfooter{
